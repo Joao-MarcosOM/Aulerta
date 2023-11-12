@@ -17,11 +17,13 @@ class TasksPage extends StatefulWidget {
 
   @override
   State<TasksPage> createState() => _HomePageState();
+  
 }
 
 class _HomePageState extends State<TasksPage> {
   DateTime _selectedDate = DateTime.now();
   final _taskController = Get.put(TaskController());
+  int _currentIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,35 @@ class _HomePageState extends State<TasksPage> {
           ),
           _showTasks(),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.medical_services_outlined),
+            label: 'Saúde',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month_outlined),
+            label: 'Atividades',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          print('selected index $index');
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
@@ -250,19 +281,16 @@ _addTaskBar() {
 
 _appBar(BuildContext context) {
   return AppBar(
+    backgroundColor: const Color(0xFFF7934A),
     elevation: 0,
     leading: GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const HomePage()),
+            (Route<dynamic> route) => false);
       },
-      child: Icon(
-        Icons.keyboard_arrow_left,
-        size: 30,
-        color: Get.isDarkMode
-            ? const Color.fromARGB(255, 146, 144, 144)
-            : const Color.fromARGB(255, 146, 144, 144),
-      ),
+      child: const Icon(Icons.keyboard_arrow_left,
+          size: 30, color: Color.fromARGB(255, 255, 255, 255)),
     ),
     actions: const [
       SizedBox(

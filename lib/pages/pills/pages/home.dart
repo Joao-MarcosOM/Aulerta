@@ -1,3 +1,5 @@
+import 'package:aulerta_final/constant.dart';
+import 'package:aulerta_final/pages/home.dart';
 import 'package:aulerta_final/pages/pills/constants.dart';
 import 'package:aulerta_final/pages/pills/pages/cadastro/new_entry.dart';
 import 'package:aulerta_final/pages/pills/pages/medicine_detais.dart';
@@ -5,13 +7,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
-class PillsPage extends StatelessWidget {
+class PillsPage extends StatefulWidget {
   const PillsPage({super.key});
+
+  @override
+  State<PillsPage> createState() => _PillsPageState();
+}
+
+class _PillsPageState extends State<PillsPage> {
+  int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF7934A),
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => const HomePage()),
+                (Route<dynamic> route) => false);
+          },
+          child: const Icon(Icons.keyboard_arrow_left,
+              size: 30, color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        actions: const [
+          SizedBox(
+            width: 20,
+          ),
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(2.h),
         child: Column(
@@ -51,9 +77,39 @@ class PillsPage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.medical_services_outlined),
+            label: 'Saúde',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month_outlined),
+            label: 'Atividades',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Perfil',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          print('selected index $index');
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
     );
   }
 }
+
 
 class TopContainer extends StatelessWidget {
   const TopContainer({super.key});
@@ -69,7 +125,7 @@ class TopContainer extends StatelessWidget {
             bottom: 1.h,
           ),
           child: Text(
-            'Worry less. \nLive healthier',
+            'Minhas \nMedicações',
             textAlign: TextAlign.start,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
@@ -80,12 +136,9 @@ class TopContainer extends StatelessWidget {
             bottom: 1.h,
           ),
           child: Text(
-            'Welcome to Daily Dose.',
+            'Para viver forte e saudável!',
             style: Theme.of(context).textTheme.titleSmall,
           ),
-        ),
-        SizedBox(
-          height: 2.h,
         ),
         Container(
           alignment: Alignment.center,
@@ -126,7 +179,7 @@ class MedicineCard extends StatelessWidget {
       splashColor: Colors.grey,
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => MedicineDetails()));
+            MaterialPageRoute(builder: (context) => const MedicineDetails()));
       },
       child: Container(
         padding: EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h, bottom: 1.h),
@@ -143,7 +196,7 @@ class MedicineCard extends StatelessWidget {
             SvgPicture.asset(
               'assets/icons/bottle.svg',
               height: 7.h,
-              color: pkOtherColor,
+              color: pkPrimaryColor,
             ),
             const Spacer(),
             Text(
@@ -165,6 +218,5 @@ class MedicineCard extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-
 class AddTaskPage extends StatefulWidget {
   const AddTaskPage({super.key});
 
@@ -36,7 +35,6 @@ class _AddTaskPageState extends State<AddTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
       appBar: _appBar(context),
       body: Container(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -271,7 +269,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 child: CircleAvatar(
                   radius: 14,
                   backgroundColor: index == 0
-                      ? primaryColor
+                      ? bluishClr
                       : index == 1
                           ? pinkClr
                           : yellowClr,
@@ -293,29 +291,18 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   _appBar(BuildContext context) {
     return AppBar(
+      backgroundColor: const Color(0xFFF7934A),
       elevation: 0,
       leading: GestureDetector(
         onTap: () {
           Get.back();
         },
-        child: Icon(
+        child: const Icon(
           Icons.arrow_back_ios,
           size: 20,
-          color: Get.isDarkMode
-              ? const Color.fromARGB(255, 146, 144, 144)
-              : const Color.fromARGB(255, 146, 144, 144),
+          color: Color.fromARGB(255, 255, 255, 255),
         ),
       ),
-      actions: const [
-        CircleAvatar(
-          backgroundImage: AssetImage(
-            "images/images.png",
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-      ],
     );
   }
 

@@ -15,6 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  // Lista de telas que serão exibidas no BottomNavigationBar
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -247,11 +251,14 @@ class _HomePageState extends State<HomePage> {
             label: 'Perfil',
           ),
         ],
-        currentIndex: 0,
+        currentIndex: _currentIndex,
         selectedItemColor: primaryColor,
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           print('selected index $index');
+          setState(() {
+            _currentIndex = index;
+          });
         },
       ),
     );

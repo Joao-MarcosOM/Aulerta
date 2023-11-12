@@ -5,7 +5,7 @@ const Color bluishClr = Color(0xFF4E5AE8);
 const Color yellowClr = Color(0XFFFFB746);
 const Color pinkClr = Color(0xFFFF4667);
 const Color white = Colors.white;
-const Color primaryColor = Color(0xFF4E5AE8);
+const Color primaryColor = Color(0xFFF7934A);
 const Color darkGreyClr = Color(0xFF121212);
 const Color darkHeaderClr = Color(0xFF141414);
 
@@ -43,5 +43,8 @@ TextStyle get titleStyle {
 
 TextStyle get subTitleStyle {
   return GoogleFonts.lato(
-      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400,));
+      textStyle: const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  ));
 }

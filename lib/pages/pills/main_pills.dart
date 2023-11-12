@@ -55,7 +55,7 @@ class _PillsState extends State<Pills> {
               ),
               headlineMedium: TextStyle(
                 fontSize: 24.sp,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.bold,
                 color: pkTextColor,
               ),
               headlineSmall: TextStyle(
