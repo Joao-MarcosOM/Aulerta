@@ -5,7 +5,9 @@ import 'package:aulerta_final/utils/url.dart';
 import 'package:http/http.dart' as http;
 
 class ShowMedicineAPI {
-  Future<List<showMedicine_model>> showMedicine(String idPet, String token) async {
+  showMedicine(String idPet, String token) async {
+    showMedicine_model ? medicine_model = showMedicine_model();
+    List<Medicines>? medicines = [];
     var url = Uri.parse('${VariaveisGlobais.baseUrl}/medicines/${idPet}');
     var headers = {
       HttpHeaders.contentTypeHeader: 'application/json',
@@ -17,15 +19,27 @@ class ShowMedicineAPI {
     if (response.statusCode == 200) {
       Map<String, dynamic> retorno = json.decode(utf8.decode(response.bodyBytes));
 
-      if (retorno.containsKey('medicines')) {
-        List<showMedicine_model> listaReserva = (retorno['medicines'] as List)
-            .map((item) => showMedicine_model.fromJson(item))
-            .toList();
+      medicine_model = showMedicine_model.fromJson(retorno);
 
-        return listaReserva;
-      } else {
-        return [];
-      }
+      print(medicine_model.medicines);
+
+      for(int i = 0 ; i < medicine_model.medicines!.length ; i++  ){
+        medicines.add(medicine_model.medicines![i]);
+      };
+
+      print(medicines);
+
+      // if (retorno.containsKey('medicines')) {
+      //   List<showMedicine_model> listaReserva = (retorno['medicines'] as List)
+      //       .map((item) => showMedicine_model.fromJson(item))
+      //       .toList();
+
+      //   return listaReserva;
+      // } else {
+      //   return [];
+      // }
+
+      return medicines;
     } else {
       throw Exception('Falha ao carregar os medicamentos');
     }

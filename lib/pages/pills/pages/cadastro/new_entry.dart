@@ -245,7 +245,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
 
                           await showMedicineController.showMedicine('1', loginController.token.toString());
 
-                          var result2 = showMedicineController.response;
+                          var result2 = showMedicineController.medicines;
 
                           print(result2);
 
