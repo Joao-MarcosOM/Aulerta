@@ -243,13 +243,6 @@ class _NewEntryPageState extends State<NewEntryPage> {
 
                           var result = createMedicineController.response;
 
-                          await showMedicineController.showMedicine('1', loginController.token.toString());
-
-                          var result2 = showMedicineController.medicines;
-
-                          print(result2);
-
-
                           if(result != false){
                             Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(builder: (context) => const PillsPage()),

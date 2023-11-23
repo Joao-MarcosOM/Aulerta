@@ -10,9 +10,6 @@ class ShowMedicineController extends ChangeNotifier {
 
   List<Medicines>? medicines = [];
 
-
-  
-
   Future showMedicine(String idPet, String token) async {
     medicines = [];
     medicines = await repository.showMedicine(idPet, token);

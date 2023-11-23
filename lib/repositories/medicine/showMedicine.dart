@@ -27,18 +27,6 @@ class ShowMedicineAPI {
         medicines.add(medicine_model.medicines![i]);
       };
 
-      print(medicines);
-
-      // if (retorno.containsKey('medicines')) {
-      //   List<showMedicine_model> listaReserva = (retorno['medicines'] as List)
-      //       .map((item) => showMedicine_model.fromJson(item))
-      //       .toList();
-
-      //   return listaReserva;
-      // } else {
-      //   return [];
-      // }
-
       return medicines;
     } else {
       throw Exception('Falha ao carregar os medicamentos');
